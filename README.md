@@ -15,6 +15,7 @@
 - [DLL compatibility](#dll-compatibility)
     - [Developing a syringe-compatible DLL](#developing-a-syringe-compatible-dll)
 - [Building syringe](#building-syringe)
+- [Disclaimer](#disclaimer)
 - [License](#license)
     - [Assets](#assets)
 
