@@ -10,7 +10,7 @@
 </p>
 
 - [Usage](#usage)
-    - [Injecting from the command line](#injecting-fromthe-command-line)
+    - [Injecting from the command line](#injecting-from-the-command-line)
         - [Common usage scenarios](#common-usage-scenarios)
 - [DLL compatibility](#dll-compatibility)
     - [Developing a syringe-compatible DLL](#developing-a-syringe-compatible-dll)
