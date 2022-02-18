@@ -135,7 +135,10 @@ extern "C" __declspec(dllexport) DWORD WINAPI Init(void* context) {
 
 This project uses C++/CLI (v143) and VS 2022. Make sure to have them installed, as it's not guaranteed to work with anything else.
 
-Building should be straightforward, since syringe was made for developers. If you don't know how to build it, you don't need it.
+Building should be straightforward.
+
+Since syringe was made for developers, and should only be used for debugging and testing purposes, no public binaries are available.
+If you don't know how to build syringe, you don't need it.
 
 # Disclaimer
 
