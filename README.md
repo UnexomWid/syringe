@@ -132,11 +132,20 @@ extern "C" __declspec(dllexport) DWORD WINAPI Init(void* context) {
 
 # Building syringe
 
-This project uses C++/CLI (v143). Make sure to have it installed. The project was developed with VS 2022, so it's not guaranteed to work with anything else.
+This project uses C++/CLI (v143) and VS 2022. Make sure to have them installed, as it's not guaranteed to work with anything else.
 
-Building should be straight-forward, since syringe was made for developers. If you don't know how to build it, you don't need it.
+Building should be straightforward, since syringe was made for developers. If you don't know how to build it, you don't need it.
 
-# License <a href="https://github.com/UnexomWid/syringe/blob/master/LICENSE"><img align="right" src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
+# Disclaimer
+
+syringe was made for debugging and testing purposes, and should **not** be used for malicious purposes. It doesn't use fancy
+injection methods (like reflective PE injection) on purpose, so it can easily be detected.
+
+I cannot be held responsible for any type of misuses and/or damages done by this software, nor for your own actions. Use this software at **your own risk and responsibility**.
+
+**This is a tool for developers.**
+
+# License<a href="https://github.com/UnexomWid/syringe/blob/master/LICENSE"><img align="right" src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
 
 syringe was developed by [UnexomWid](https://github.com/UnexomWid). It is licensed under the [MIT license](https://github.com/UnexomWid/syringe/blob/master/LICENSE)
 
