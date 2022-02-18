@@ -135,10 +135,15 @@ extern "C" __declspec(dllexport) DWORD WINAPI Init(void* context) {
 
 This project uses C++/CLI (v143) and VS 2022. Make sure to have them installed, as it's not guaranteed to work with anything else.
 
-Building should be straightforward.
+Building should be straightforward. If you want to have the `Switch to 32/64-bit` button in the GUI menu:
+
+- build syringe for x86 and then for x64
+- name the 64-bit version `syringe.exe`
+- name the 32-bit version `syringe32.exe`
+- place both executables in the same folder
 
 Since syringe was made for developers, and should only be used for debugging and testing purposes, no public binaries are available.
-If you don't know how to build syringe, you don't need it.
+If you don't know how to build syringe, you don't need it (and shouldn't use it).
 
 # Disclaimer
 
