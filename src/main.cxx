@@ -84,7 +84,7 @@ void main() {
             // This argument is reserved; a normal user must never pass it
 
             if (argv->Length != 7) {
-                Error(L"Invalid arguments\nUsage: syringe.exe <DLL_Path> [--launch | -l | --pid | -p] <Program_Path_Or_PID> [args...]",
+                Error(L"Invalid arguments\nUsage: syringe.exe [--no-gui] <DLL_Path> [--launch | -l | --pid | -p] <Program_Path_Or_PID> [args...]",
                       ExitCode::INVALID_ARGS, noGui);
             }
 
@@ -137,7 +137,7 @@ void main() {
             default:
                 // More than 4 args; launch mode + args
                 if (argv[2]->Equals(gcnew String(L"--pid")) || argv[2]->Equals(gcnew String(L"-p"))) {
-                    Error(String::Format(L"Too many arguments for 'pid' mode; expected max 3, got '{0}'\nUsage: syringe.exe <DLL_Path> [--launch | -l | --pid | -p] <Program_Path_Or_PID> [args...]",
+                    Error(String::Format(L"Too many arguments for 'pid' mode; expected max 3, got '{0}'\nUsage: syringe.exe [--no-gui] <DLL_Path> [--launch | -l | --pid | -p] <Program_Path_Or_PID> [args...]",
                                          argv->Length - 1),
                           ExitCode::TOO_MANY_ARGS, noGui);
                 }

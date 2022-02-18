@@ -11,7 +11,7 @@
 
 # Usage
 
-Simply run syringe.
+Simply run syringe. You can also drag a DLL file over `syringe.exe`
 
 Modes:
 - **Launch**: launch an executable and inject a DLL into it
@@ -22,10 +22,12 @@ Menu:
 - **Switch to 32/64-bit**: open the 32/64-bit version of syringe
 - **Options**: set the command line for the program (for launch mode)
 
-Process ID combo box: choose a running process or type an id (the first group of digits is considered as being the PID; if the first non-whitespace character isn't a digit, the id is invalid).
-Use the `Refresh` button to update the list of running processes.
+Process ID (PID mode):
 
-## Injecting from the command-line
+- choose a running process or type an id (the first group of digits is considered as being the PID; if the first non-whitespace character isn't a digit, the id is invalid)
+- use the `Refresh` button to update the list of running processes
+
+## Injecting from the command line
 
 ```shell
 syringe.exe [--no-gui] <DLL_Path> [--launch | -l | --pid | -p] <Program_Path_Or_PID> [args...]
@@ -34,18 +36,18 @@ syringe.exe [--no-gui] <DLL_Path> [--launch | -l | --pid | -p] <Program_Path_Or_
 `--no-gui` is optional (but must be the first arg); if it's specified and syringe encounters an error, no message box will be shown. In this case, use the syringe exit code
 to find the error:
 
-- `1`: invalid arguments
-- `2`: too many arguments
-- `3`: program path is invalid (doesn't exist or file is not a valid executable)
-- `4`: architecture mismatch; you're trying to inject a 32-bit DLL into a 64-bit exe/process (or vice-versa), or you're trying to inject a 32-bit DLL with the 64-bit version of syringe (or vice-versa)
-- `5`: invalid PID (not a valid int32, or no process with that id exists)
-- `6`: access denied, try running syringe with administrator privileges
-- `7`: not enough args, you're running syringe with `--no-gui` but you're only giving a few args (e.g. only the DLL path instead of DLL + program path)
-- `8`: injection failed; run without `--no-gui` for more details
+- **1**: invalid arguments
+- **2**: too many arguments
+- **3**: program path is invalid (doesn't exist or file is not a valid executable)
+- **4**: architecture mismatch; you're trying to inject a 32-bit DLL into a 64-bit exe/process (or vice-versa), or you're trying to inject a 32-bit DLL with the 64-bit version of syringe (or vice-versa)
+- **5**: invalid PID (not a valid int32, or no process with that id exists)
+- **6**: access denied, try running syringe with administrator privileges
+- **7**: not enough args, you're running syringe with `--no-gui` but you're only giving a few args (e.g. only the DLL path instead of DLL + program path)
+- **8**: injection failed; run without `--no-gui` for more details
 
 ### Common usage scenarios
 
-For all of these examples you can also specify `--no-gui` but it was omitted for simplicity.
+For most of these examples you can also specify `--no-gui` but it was omitted for simplicity.
 
 Launch exe and inject DLL into it:
 
@@ -77,12 +79,12 @@ Open the syringe window with the DLL path pre-written in the text box:
 syringe.exe <DLL_Path>
 ```
 
-> If you specify `--no-gui`, you have to pass all of the required arguments (dll path + program path or PID) because syringe won't spawn a GUI (and therefore can't get further input from you).
+> You can't use `--no-gui` here; you have to pass all of the required arguments (dll path + program path or PID) because syringe won't spawn a GUI (and therefore can't get further input from you).
 
 # DLL compatibility
-The DLL, target program/process, and syringe architectures must match (i.e. all 64-bit or all 32-bit).
+The DLL, target exe/process, and syringe architectures must match (i.e. all 64-bit or all 32-bit).
 
-If this constraint is satisfied, syringe should work with any DLLs (unless, of course, the DLL is faulty and crashes in DllMain).
+If this constraint is satisfied, syringe should work with any DLLs (unless, of course, the DLL is faulty and crashes `in DllMain`).
 
 ## The Init function
 
@@ -92,6 +94,8 @@ DWORD Init(void* context)
 ```
 ...it will be called by syringe after the DLL was loaded (`Init(NULL)`). The context pointer is always `NULL`, and is part of the
 signature purely because syringe executes the function on another thread. The signature of the thread function takes a context pointer.
+
+`Init` should return `0` on success.
 
 Note that if this function doesn't exist, syringe will only load the DLL; `DllMain` will be called and nothing more.
 
@@ -103,7 +107,7 @@ An example of properly-defined `Init` function:
 
 ```cpp
 extern "C" __declspec(dllexport) DWORD WINAPI Init(void* context) {
-    // Since _stdcall functions are decorated only when compiling for 32-bit, make sure to export
+    // Since functions marked __stdcall are decorated only when compiling for 32-bit, make sure to export
     // the function as `Init` even in that case
 #ifndef _WIN64
 #    pragma comment(linker, "/EXPORT:" __FUNCTION__ "=" __FUNCDNAME__)
@@ -120,3 +124,11 @@ extern "C" __declspec(dllexport) DWORD WINAPI Init(void* context) {
 # License <a href="https://github.com/UnexomWid/syringe/blob/master/LICENSE"><img align="right" src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
 
 syringe was developed by [UnexomWid](https://github.com/UnexomWid). It is licensed under the [MIT license](https://github.com/UnexomWid/syringe/blob/master/LICENSE)
+
+## Assets
+
+This project makes use of the following icons from [icons8](https://icons8.com):
+
+- [Syringe icon](https://icons8.com/icon/uR76IG2xWAIk/syringe)
+- [Folder icon](https://icons8.com/icon/H6BJs8h4en6g/folder)
+- [Refresh icon](https://icons8.com/icon/ziqQwaOQPb2C/refresh)
