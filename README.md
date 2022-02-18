@@ -9,6 +9,15 @@
   <img src="img/gui.png" alt="syringe">
 </p>
 
+- [Usage](#usage)
+    - [Injecting from the command line](#injecting-fromthe-command-line)
+        - [Common usage scenarios](#common-usage-scenarios)
+- [DLL compatibility](#dll-compatibility)
+    - [Developing a syringe-compatible DLL](#developing-a-syringe-compatible-dll)
+- [Building syringe](#building-syringe)
+- [License](#license)
+    - [Assets](#assets)
+
 # Usage
 
 Simply run syringe. You can also drag a DLL file over `syringe.exe`
@@ -120,6 +129,12 @@ extern "C" __declspec(dllexport) DWORD WINAPI Init(void* context) {
     return 0;
 }
 ```
+
+# Building syringe
+
+This project uses C++/CLI (v143). Make sure to have it installed. The project was developed with VS 2022, so it's not guaranteed to work with anything else.
+
+Building should be straight-forward, since syringe was made for developers. If you don't know how to build it, you don't need it.
 
 # License <a href="https://github.com/UnexomWid/syringe/blob/master/LICENSE"><img align="right" src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
 
